@@ -1,0 +1,54 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<error>> orangered
+BackgroundColor<<unchecked>> orange
+BackgroundColor<<checked>> palegreen
+}
+
+class Throwable
+
+class Error << error >>
+class ThreadDeath << error >>
+class LinkageError << error >>
+class AssertionError << error >>
+class VirtualMachineError << error >>
+class StackOverflowError << error >>
+class OutOfMemoryError << error >>
+
+class Exception<<checked>>
+class IOException<<checked>>
+class InterruptedException<<checked>>
+class NamingException<<checked>>
+class ReflectiveOperationException<<checked>>
+class SQLException<<checked>>
+
+class RuntimeException<<unchecked>>
+class NullPointerException<<unchecked>>
+class ClassCastException<<unchecked>>
+class IndexOutOfBoundsException<<unchecked>>
+class ArithmeticException<<unchecked>>
+
+Throwable <|--down Error
+Throwable <|--down Exception
+
+Error <|--down ThreadDeath
+Error <|---down LinkageError
+Error <|----down AssertionError
+Error <|-----down VirtualMachineError
+VirtualMachineError <|--down StackOverflowError
+VirtualMachineError <|--down OutOfMemoryError
+
+Exception <|--right RuntimeException
+Exception <|--down IOException
+Exception <|---down InterruptedException
+Exception <|----down NamingException
+Exception <|-----down ReflectiveOperationException
+Exception <|------down SQLException
+
+RuntimeException <|--down NullPointerException
+RuntimeException <|---down ClassCastException
+RuntimeException <|----down IndexOutOfBoundsException
+RuntimeException <|-----down ArithmeticException
+
+@enduml
