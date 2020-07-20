@@ -1,0 +1,69 @@
+@startuml
+
+skinparam class {
+BackgroundColor<< set >> palegreen
+BackgroundColor<<queue>> yellow
+BackgroundColor<<list>> orangered
+}
+
+interface Iterable
+
+interface Collection
+
+abstract class AbstractCollection
+
+interface Set << set >>
+abstract class AbstractSet
+class HashSet << set >>
+class LinkedHashSet << set >>
+interface SortedSet << set >>
+interface NavigableSet << set >>
+class TreeSet << set >>
+
+
+interface Queue << queue >>
+interface Deque << queue >>
+
+
+interface List << list >>
+abstract class AbstractList
+abstract class AbstractSequentialList
+class LinkedList << list >> #orange
+class ArrayList << list >>
+class Vector << list >>
+class Stack << list >>
+
+
+Iterable <|--down Collection
+Collection <|--down AbstractCollection
+AbstractCollection <|--down AbstractList
+AbstractCollection <|--down AbstractSet
+
+Collection <|--left Set
+Set <|--down AbstractSet
+Set <|--down HashSet
+Set <|--down LinkedHashSet
+Set <|---down SortedSet
+AbstractSet <|--down HashSet
+HashSet <|--down LinkedHashSet
+AbstractSet <|--down TreeSet
+SortedSet <|---down NavigableSet
+NavigableSet <|--down TreeSet
+
+Collection <|--right Queue
+Queue <|---down Deque
+Deque <|----down LinkedList
+
+
+Collection <|--down List
+List <|--down AbstractList
+List <|--down LinkedList
+List <|--down ArrayList
+List <|--down Vector
+Vector <|--down Stack
+AbstractList <|--down AbstractSequentialList
+AbstractList <|--down ArrayList
+AbstractList <|--down Vector
+AbstractSequentialList <|--right LinkedList
+
+@enduml
