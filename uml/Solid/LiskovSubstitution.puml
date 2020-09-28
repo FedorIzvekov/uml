@@ -1,0 +1,19 @@
+@startuml
+
+class Vehicle {
+getSpeed()
+}
+
+class Car {
+getSpeed()
+}
+
+class Bus {
+getSpeed()
+}
+
+
+Vehicle <|-- Car
+Vehicle <|-- Bus
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+
+class Client {
+}
+
+interface Server {
+}
+
+class FirstServer {
+reportHours()
+}
+
+class SecondServer {
+save()
+}
+
+
+Client o. Server
+Server <.. FirstServer
+Server <.. SecondServer
+
+@enduml

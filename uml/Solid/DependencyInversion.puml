@@ -1,0 +1,31 @@
+@startuml
+
+class Person {
+}
+
+interface State {
+int lives
+int points
+boolean moving
+}
+
+class FirstState {
+process(State)
+}
+
+class SecondState {
+process(State)
+}
+
+class ThirdState {
+process(State)
+}
+
+
+
+Person *- State
+State <.. FirstState
+State <.. SecondState
+State <.. ThirdState
+
+@enduml

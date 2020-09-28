@@ -1,0 +1,27 @@
+@startuml
+
+class Employee {
+String name
+getName()
+}
+
+class CFO {
+calculatePay()
+calculateHour()
+}
+
+class COO {
+reportHours()
+getHours()
+}
+
+class CTO {
+save()
+}
+
+
+Employee <|-- CFO
+Employee <|-- COO
+Employee <|-- CTO
+
+@enduml
