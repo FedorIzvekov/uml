@@ -5,31 +5,14 @@ BackgroundColor orange
 }
 
 interface Map
-
 abstract class Dictionary
-abstract class AbstractMap
+abstract class AbstractMap implements Map
 
-interface SortedMap
-interface NavigableMap
+interface SortedMap extends Map
+interface NavigableMap extends SortedMap
 
-class Hashtable
-class TreeMap
-class HashMap
-
-
-
-Map <|--down SortedMap
-Map <|...down AbstractMap
-Map <|....down Hashtable
-
-SortedMap <|--down NavigableMap
-
-Dictionary <|--down Hashtable
-
-AbstractMap <|--down TreeMap
-NavigableMap <|..down TreeMap
-
-AbstractMap <|--down HashMap
-Map <|..down HashMap
+class Hashtable extends Dictionary implements Map
+class TreeMap extends AbstractMap implements NavigableMap
+class HashMap extends AbstractMap implements Map
 
 @enduml
