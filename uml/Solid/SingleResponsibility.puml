@@ -1,27 +1,47 @@
 @startuml
 
-class Employee {
-String name
-getName()
+title SOLID Single Responsibility
+
+class Book {
+  -title: string
+  -author: string
+  -content: string
+  +setTitle(title: string): void
+  +setAuthor(author: string): void
+  +setContent(content: string): void
+  +getTitle(): string
+  +getAuthor(): string
+  +getContent(): string
 }
 
-class CFO {
-calculatePay()
-calculateHour()
+class BookService {
+  +create(book: Book): void
+  +delete(book: Book): void
+  +updateUser(): void
+  +getById():Book
 }
 
-class COO {
-reportHours()
-getHours()
+class BookRepository {
+  +save(book: Book): Book
+  +delete(book: Book): void
+  +getById(): Book
 }
 
-class CTO {
-save()
-}
+Book --> BookRepository
+Book --> BookService
+BookService <-> BookRepository : Book
 
 
-Employee <|-- CFO
-Employee <|-- COO
-Employee <|-- CTO
+note left of Book
+  "The class is responsible only for information about the entity"
+end note
+
+note right of BookRepository
+  "The class is responsible only for CRUD operations in the database or storage"
+end note
+
+note left of BookService
+  "The class is responsible only for executing the business logic"
+end note
 
 @enduml
