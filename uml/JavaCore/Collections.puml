@@ -1,5 +1,7 @@
 @startuml
 
+title Collections Hierarchy
+
 skinparam class {
 BackgroundColor<< set >> palegreen
 BackgroundColor<<queue>> yellow

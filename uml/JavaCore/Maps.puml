@@ -1,5 +1,7 @@
 @startuml
 
+title Maps Hierarchy
+
 skinparam class {
 BackgroundColor orange
 }
