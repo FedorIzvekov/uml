@@ -32,15 +32,15 @@ Book --> BookService
 BookService <-> BookRepository : Book
 
 
-note left of Book
+note top of Book
   "The class is responsible only for information about the entity"
 end note
 
-note right of BookRepository
+note top of BookRepository
   "The class is responsible only for CRUD operations in the database or storage"
 end note
 
-note left of BookService
+note top of BookService
   "The class is responsible only for executing the business logic"
 end note
 
