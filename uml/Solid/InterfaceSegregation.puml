@@ -1,44 +1,30 @@
 @startuml
 
-interface Car {
-currentSpeed()
+title SOLID Interface Segregation
+
+interface Printable {
+  + print(): void
 }
 
-class Inspector {
+interface Scanable {
+  + scan(): void
 }
 
-class Driver {
+class Printer implements Printable {
+  + print(): void
 }
 
-class DriversWife {
+class Scanner implements Scanable {
+  + scan(): void
 }
 
-interface InspectorCar {
-currentSpeed()
-turnOnSiren()
-checkNumber()
+class AllInOnePrinter implements Printable, Scanable {
+  + print(): void
+  + scan(): void
 }
 
-interface DriverCar {
-currentSpeed()
-playMusic()
-handbrake()
-rudder()
-pedals()
-}
-
-
-interface WifesCar {
-currentSpeed()
-playMusic()
-}
-
-
-Car <|-- InspectorCar
-Car <|-- DriverCar
-Car <|-- WifesCar
-InspectorCar <.. Inspector
-DriverCar <.. Driver
-WifesCar <.. DriversWife
+note top of Printable
+"Interfaces do not contain unnecessary methods that implementing classes do not need"
+end note
 
 @enduml
