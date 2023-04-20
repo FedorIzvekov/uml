@@ -7,63 +7,27 @@ BackgroundColor<<list>> orangered
 }
 
 interface Iterable
+interface Collection extends Iterable
 
-interface Collection
+abstract class AbstractCollection implements Collection
 
-abstract class AbstractCollection
+interface Set << set >> extends Collection
+abstract class AbstractSet extends AbstractCollection implements Set
+class HashSet << set >> extends AbstractSet implements Set
+class LinkedHashSet << set >> extends HashSet implements Set
+interface SortedSet << set >> extends Set
+interface NavigableSet << set >> extends SortedSet
+class TreeSet << set >> extends AbstractSet implements NavigableSet
 
-interface Set << set >>
-abstract class AbstractSet
-class HashSet << set >>
-class LinkedHashSet << set >>
-interface SortedSet << set >>
-interface NavigableSet << set >>
-class TreeSet << set >>
+interface Queue << queue >> extends Collection
+interface Deque << queue >> extends Queue
 
-
-interface Queue << queue >>
-interface Deque << queue >>
-
-
-interface List << list >>
-abstract class AbstractList
-abstract class AbstractSequentialList
-class LinkedList << list >> #orange
-class ArrayList << list >>
-class Vector << list >>
-class Stack << list >>
-
-
-Iterable <|--down Collection
-Collection <|--down AbstractCollection
-AbstractCollection <|--down AbstractList
-AbstractCollection <|--down AbstractSet
-
-Collection <|--left Set
-Set <|--down AbstractSet
-Set <|--down HashSet
-Set <|--down LinkedHashSet
-Set <|---down SortedSet
-AbstractSet <|--down HashSet
-HashSet <|--down LinkedHashSet
-AbstractSet <|--down TreeSet
-SortedSet <|---down NavigableSet
-NavigableSet <|--down TreeSet
-
-Collection <|--right Queue
-Queue <|---down Deque
-Deque <|----down LinkedList
-
-
-Collection <|--down List
-List <|--down AbstractList
-List <|--down LinkedList
-List <|--down ArrayList
-List <|--down Vector
-Vector <|--down Stack
-AbstractList <|--down AbstractSequentialList
-AbstractList <|--down ArrayList
-AbstractList <|--down Vector
-AbstractSequentialList <|--right LinkedList
+interface List << list >> extends Collection
+abstract class AbstractList extends AbstractCollection implements List
+abstract class AbstractSequentialList extends AbstractList
+class LinkedList << list >> #orange extends AbstractSequentialList implements List, Deque
+class ArrayList << list >> extends AbstractList implements List
+class Vector << list >> extends AbstractList implements List
+class Stack << list >> extends Vector
 
 @enduml
