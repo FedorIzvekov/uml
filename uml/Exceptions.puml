@@ -1,5 +1,7 @@
 @startuml
 
+title Exceptions Hierarchy
+
 skinparam class {
 BackgroundColor<<error>> orangered
 BackgroundColor<<unchecked>> orange
@@ -8,47 +10,25 @@ BackgroundColor<<checked>> palegreen
 
 class Throwable
 
-class Error << error >>
-class ThreadDeath << error >>
-class LinkageError << error >>
-class AssertionError << error >>
-class VirtualMachineError << error >>
-class StackOverflowError << error >>
-class OutOfMemoryError << error >>
+class Error << error >> extends Throwable
+class ThreadDeath << error >> extends Error
+class LinkageError << error >> extends Error
+class AssertionError << error >> extends Error
+class VirtualMachineError << error >> extends Error
+class StackOverflowError << error >> extends VirtualMachineError
+class OutOfMemoryError << error >> extends VirtualMachineError
 
-class Exception<<checked>>
-class IOException<<checked>>
-class InterruptedException<<checked>>
-class NamingException<<checked>>
-class ReflectiveOperationException<<checked>>
-class SQLException<<checked>>
+class Exception<<checked>> extends Throwable
+class IOException<<checked>>  extends Exception
+class InterruptedException<<checked>> extends Exception
+class NamingException<<checked>> extends Exception
+class ReflectiveOperationException<<checked>> extends Exception
+class SQLException<<checked>> extends Exception
 
-class RuntimeException<<unchecked>>
-class NullPointerException<<unchecked>>
-class ClassCastException<<unchecked>>
-class IndexOutOfBoundsException<<unchecked>>
-class ArithmeticException<<unchecked>>
-
-Throwable <|--down Error
-Throwable <|--down Exception
-
-Error <|--down ThreadDeath
-Error <|---down LinkageError
-Error <|----down AssertionError
-Error <|-----down VirtualMachineError
-VirtualMachineError <|--down StackOverflowError
-VirtualMachineError <|--down OutOfMemoryError
-
-Exception <|--right RuntimeException
-Exception <|--down IOException
-Exception <|---down InterruptedException
-Exception <|----down NamingException
-Exception <|-----down ReflectiveOperationException
-Exception <|------down SQLException
-
-RuntimeException <|--down NullPointerException
-RuntimeException <|---down ClassCastException
-RuntimeException <|----down IndexOutOfBoundsException
-RuntimeException <|-----down ArithmeticException
+class RuntimeException<<unchecked>> extends Exception
+class NullPointerException<<unchecked>> extends RuntimeException
+class ClassCastException<<unchecked>> extends RuntimeException
+class IndexOutOfBoundsException<<unchecked>> extends RuntimeException
+class ArithmeticException<<unchecked>> extends RuntimeException
 
 @enduml
