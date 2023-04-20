@@ -1,22 +1,33 @@
 @startuml
 
-class Client {
+title SOLID Open/Closed
+
+abstract class Shape {
+  +getArea(): double
 }
 
-interface Server {
+class Circle {
+  -radius: double
+  +getArea(): double
 }
 
-class FirstServer {
-reportHours()
+class Rectangle {
+  -width: double
+  -height: double
+  +getArea(): double
 }
 
-class SecondServer {
-save()
+class AreaCalculator {
+  +getTotalArea(shapes: Shape[]): double
 }
 
+Shape <|-- Circle
+Shape <|-- Rectangle
 
-Client o. Server
-Server <.. FirstServer
-Server <.. SecondServer
+AreaCalculator o-- Shape
+
+note right of AreaCalculator
+  "The class is open for extension with new shapes, but closed for modification of its logic"
+end note
 
 @enduml
