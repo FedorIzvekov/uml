@@ -1,31 +1,31 @@
 @startuml
 
-class Person {
+title SOLID Dependency Inversion
+
+interface Database {
+  +save(data: string): void
 }
 
-interface State {
-int lives
-int points
-boolean moving
+class PostgreSqlDatabase {
+  +save(data: string): void
 }
 
-class FirstState {
-process(State)
+class OracleDatabase {
+  +save(data: string): void
 }
 
-class SecondState {
-process(State)
+class DataService {
+  -database: Database
+  +DataService(database: Database)
+  +saveData(data: string): void
 }
 
-class ThirdState {
-process(State)
-}
+DataService o- Database
+PostgreSqlDatabase -up-|> Database
+OracleDatabase -up-|> Database
 
-
-
-Person *- State
-State <.. FirstState
-State <.. SecondState
-State <.. ThirdState
+note top of DataService
+  "The high-level class depends on abstraction, not on specific implementation classes of the lower level"
+end note
 
 @enduml
